@@ -21,4 +21,8 @@ contract TareaContrato{
         return tareas;
     }
 
+    function eliminar(uint _posicion) public {
+        delete tareas[_posicion];
+    }
+
 }

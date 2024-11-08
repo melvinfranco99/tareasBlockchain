@@ -75,6 +75,11 @@ class App extends Component {
     
   }
 
+  async eliminar(_posicion){
+    const tareasContrato = this.state.tareasContrato
+    await tareasContrato.methods.eliminar(_posicion).send({from: this.state.account})
+  }
+
   
 
   constructor(props) {
@@ -109,6 +114,22 @@ class App extends Component {
                   required
                   /><br></br><br></br>
                   <button type='submit' className='btn btn-success'>Agregar tarea</button>
+                </form>
+              </div>
+              <div className="content mr-auto ml-auto card">
+                <form onSubmit={async (e) => {
+                  e.preventDefault()
+
+                  let posicion = this.posicion.value
+
+                  await this.eliminar(posicion)
+                }}>
+                  <input
+                  ref={(posicion) => {this.posicion = posicion}}
+                  placeholder='posicion'
+                  required
+                  /><br></br><br></br>
+                  <button className='btn btn-danger' type='submit'>Eliminar</button>
                 </form>
               </div>
               <div className="content mr-auto ml-auto card">
